@@ -23,6 +23,6 @@ def humanize_text():
         "humanized": humanized_text,
         "ai_score": "0% (Pure Human)"
     })
-
+app = app
 if __name__ == '__main__':
     app.run(debug=True)
