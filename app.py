@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Yahan apni asli API Key paste karein (Ya Vercel Environment Variable use karein)
 GEMINI_API_KEY = "AIzaSyCsahJbwZS0rAkGZ2birqpE5tuVlCzbAFI"
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-1.5-flash')
 @app.route('/')
 def home():
     return render_template('index.html')
