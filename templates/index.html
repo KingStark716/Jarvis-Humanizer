@@ -32,7 +32,7 @@
             resultDiv.style.display = 'block';
             resultDiv.innerText = "Processing...";
 
-            const response = await fetch('/v1/humanize', {
+            const response = await fetch('/v1/humanize?api_key=STARK_99', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text: text })
