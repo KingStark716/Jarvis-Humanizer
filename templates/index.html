@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stark AI Shield</title>
+    <style>
+        body { background: #0f172a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .container { background: #1e293b; padding: 2rem; border-radius: 15px; border: 2px solid #38bdf8; box-shadow: 0 0 20px #38bdf8; text-align: center; width: 80%; max-width: 500px; }
+        h1 { color: #38bdf8; margin-bottom: 1rem; }
+        textarea { width: 100%; padding: 10px; border-radius: 5px; border: none; margin-bottom: 1rem; background: #334155; color: white; resize: none; }
+        button { background: #38bdf8; color: #0f172a; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: white; }
+        #result { margin-top: 1.5rem; padding: 10px; background: #0f172a; border-radius: 5px; display: none; text-align: left; border-left: 4px solid #38bdf8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>STARK AI SHIELD</h1>
+        <p>Input text for humanization, Sir.</p>
+        <textarea id="userInput" rows="4" placeholder="Type here..."></textarea>
+        <button onclick="sendToJarvis()">ACTIVATE SHIELD</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function sendToJarvis() {
+            const text = document.getElementById('userInput').value;
+            const resultDiv = document.getElementById('result');
+            if(!text) return alert("Sir, input is required.");
+            
+            resultDiv.style.display = 'block';
+            resultDiv.innerText = "Processing...";
+
+            const response = await fetch('/v1/humanize', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: text })
+            });
+            const data = await response.json();
+            resultDiv.innerText = data.humanized || data.error;
+        }
+    </script>
+</body>
+</html>
