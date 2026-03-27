@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 @app.route('/')
 def home():
-    return "Sir, Jarvis is Online. Please use the Humanizer endpoint."
+    return render_template('index.html')
 @app.route('/v1/humanize', methods=['POST'])
 def humanize_text():
     api_key = request.args.get('api_key')
